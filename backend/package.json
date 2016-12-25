@@ -1,0 +1,14 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Rappi backend tech test",
+  "main": "index.js",
+  "scripts": {
+    "test": "node node_modules/.bin/jasmine"
+  },
+  "author": "Juan Sebastian Osuna <jsebastianosuna@hotmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "jasmine": "^2.5.2"
+  }
+}
