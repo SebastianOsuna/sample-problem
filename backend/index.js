@@ -17,6 +17,9 @@ QUERY 1 1 1 2 2 2
 QUERY 2 2 2 2 2 2
 `;
 
+
+
 const test = parse(input);
+console.log(JSON.stringify(test, null, 2))
 new TestCase(test.cases[0]).run();
 new TestCase(test.cases[1]).run();

@@ -2,6 +2,13 @@
 
 const Operation = require('./Operation');
 
+/**
+ * A Test Case representation.
+ * @param params.N Matrix size
+ * @param params.M Operations count
+ * @param params.operation Array of operations to be performed.
+ * @param params.handler Handler function for returned values of any operation. Defaults to console.log
+ */
 module.exports = class TestCase {
   constructor(params) {
     this.N = params.N;
@@ -11,6 +18,9 @@ module.exports = class TestCase {
     this.resetMatrix();
   }
 
+  /**
+   * Resets the current matrix to be a N * N * N zeroed matrix
+   */
   resetMatrix() {
     this.matrix = [];
     const zeros = zerosArray(this.N);
@@ -24,6 +34,11 @@ module.exports = class TestCase {
     }
   }
 
+  /**
+   * Applies the test case operations to the matrix.
+   * If any operations returns a not null value, the handler function will be called 
+   * with the returned value as parameter.
+   */
   run() {
     this.operations.forEach(op => {
       const result = op.apply(this.matrix);
@@ -34,6 +49,9 @@ module.exports = class TestCase {
   }
 }
 
+/**
+ * Returns an array of length n filled with only 0s
+ */
 function zerosArray(n) {
   var array = [];
   for (let i = 0; i < n; i++) {

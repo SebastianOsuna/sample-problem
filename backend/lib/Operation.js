@@ -1,7 +1,18 @@
 'use strict';
 
 module.exports = class Operation {
-  // Coordinates are substracted 1 since arrays are 0-indexed
+  /**
+   * Represents an operation of a Test Case to be performed on a 3D matrix.
+   * Provided coordinates are fixed for 0-indexed arrays (ie. 1 is substracted)
+   * @param OP Operation type (only UPDATE and QUERY allowed)
+   * @param x x-coordinate
+   * @param y y-coordinate
+   * @param z z-coordinate
+   * @param x2 x-coordinate for QUERY operation
+   * @param y2 y-coordinate for QUERY operation
+   * @param z2 z-coordinate for QUERY operation
+   * @param W Value to set for UPDATE operation
+   */
   constructor(params) {
     this.OP = params.OP;
     this.x = params.x - 1;
@@ -13,6 +24,11 @@ module.exports = class Operation {
     this.W = params.W;
   }
 
+  /** 
+   * Applys the operation to the given matrix.
+   * @returns Sum of the block if QUERY operation. Return undefined if UPDATE operation
+   * @throws Error if not QUERY or UPDATE operations
+  */
   apply(matrix) {
     if (this.OP === 'UPDATE') {
       matrix[this.x][this.y][this.z] = this.W;

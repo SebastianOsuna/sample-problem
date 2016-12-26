@@ -2,6 +2,12 @@
 
 const TestCase = require('./TestCase');
 
+/**
+ * Parses the Input as described in https://www.hackerrank.com/challenges/cube-summation.
+ * @throws Error if T is not a greater-than-0 number
+ * @throws Error if any line doesn\'t conform to the rules.
+ * @returns Plain object with the parsed information { T, cases: [{N, M, operations: [{ OP, x, y, z, W, x2, y2, z2 }] }] }.
+ */
 module.exports = function parse(input) {
   const lines = input.split('\n');
   const T = parseInt(lines.shift());
@@ -46,41 +52,9 @@ module.exports = function parse(input) {
     return operation;
   }
 
-
   for (let i = 0; i < T; i++) {
     cases.push(parseTestCase());
   }
 
-
   return { T, cases };
-
-  // const entryRegexp = `((UPDATE \\d+ \\d+ \\d+ \\d+)|(QUERY \\d+ \\d+ \\d+ \\d+ \\d+ \\d+))`;
-  // const groupRegexp = `\\n(\\d+) (\\d+)\\n(${entryRegexp}+)`;
-  // const inputCheck = new RegExp(`(\\d+)(${groupRegexp})+`, 'g').exec(input);
-  // var groups = [];
-
-
-  // // Just check input is valid
-  // if (!inputCheck) {
-  //   throw new Error('Invalid input: wrong format');
-  // }
-
-  // // Parse groups
-  // const testCases = parseInt(inputCheck[1]);
-  // var regExp = new RegExp(groupRegexp, 'g');
-  // for (let i = 0; i < testCases; i++) {
-  //   var parsedRegexp = regExp.exec(input);
-  //   console.log(parsedRegexp);
-  //   var parsedGroup = {
-  //     N: parseInt(parsedRegexp[1]),
-  //     M: parseInt(parsedRegexp[2]),
-  //   };
-  //   groups.push(parsedGroup);
-  // }
-
-  // if (testCases !== groups.length) {
-  //   throw new Error('Invalid Input: T is different form the provided cases');
-  // }
-
-  // return groups;
 };
