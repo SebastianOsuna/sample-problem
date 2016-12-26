@@ -1,6 +1,6 @@
 'use strict';
 
-const parse = require('./parser');
+const parse = require('./Parser');
 
 const input = `2
 4 5
