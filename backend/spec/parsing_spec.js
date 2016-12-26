@@ -1,6 +1,8 @@
 'use strict';
 
 const Parser = require('../lib/Parser');
+const TestCase = require('../lib/TestCase');
+const Operation = require('../lib/Operation');
 
 describe('Input parsing', function () {
 

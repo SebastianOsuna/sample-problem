@@ -1,6 +1,7 @@
 'use strict';
 
-const parse = require('./Parser');
+const parse = require('./lib/Parser');
+const TestCase = require('./lib/TestCase');
 
 const input = `2
 4 5
@@ -16,7 +17,6 @@ QUERY 1 1 1 2 2 2
 QUERY 2 2 2 2 2 2
 `;
 
-var lines = input.split('\n');
-
-// parse input
-return console.log(JSON.stringify(parse(input), null, 2));
+const test = parse(input);
+new TestCase(test.cases[0]).run();
+new TestCase(test.cases[1]).run();

@@ -22,7 +22,7 @@ module.exports = function parse(input) {
       operations.push(parseOperation());
     }
 
-    return new TestCase({ N, M, operations });
+    return { N, M, operations };
   }
 
   function parseOperation() {
