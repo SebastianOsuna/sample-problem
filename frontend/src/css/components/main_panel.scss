@@ -1,0 +1,50 @@
+$panel-border-top: 70px;
+$panel-body-color: rgb(189, 189, 189);
+$panel-inner-padding: 15px 50px;
+
+.mainPanel {
+  width: 80%;
+  margin: 0 auto;
+  position: relative;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  margin-top: $panel-border-top;
+  @include shadow(2px 2px 11px -1px rgba(120, 120, 120, 0.8));
+  @include animation(bounce-up ease 1s 1);
+
+  .header {
+    width: 100%;
+    height: 70px;
+    padding: $panel-inner-padding;
+    background-color: $app-red;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+
+    .hamburger { @include animation(bounce-upper ease 1s 1) }
+  }
+
+  .body {
+    min-height: 1000px;
+    height: 100%;
+    background-color: $panel-body-color;
+    padding: $panel-inner-padding;
+    padding-top: 25px;
+  }
+}
+
+@include keyframes(bounce-up) {
+  0% { top: 500px; position: absolute; margin-left: 10%; }
+  65% { top: -1 * $panel-border-top; }
+  74% { top: 0 }
+  82% { top: 40px }
+  90% { top: 0 }
+  96% { top: 10px }
+  100% { top: 0; position: absolute; margin-left: 10%; }
+}
+
+@include keyframes(bounce-upper) {
+  65% { margin-top: -10px }
+  74% { margin-top: 0 }
+  82% { margin-top: -5px }
+  90% { margin-top: 0 }
+}

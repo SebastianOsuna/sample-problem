@@ -45,7 +45,7 @@ module.exports = function (grunt) {
   grunt.registerTask('localServer', function () {
     const done = this.async();
     HttpServer.createServer({
-      root: 'frontend',
+      root: '.',
       showDir: true,
     }).listen(8080, '0.0.0.0', () => {
       opener('http://localhost:8080/');
