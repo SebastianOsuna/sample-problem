@@ -1,0 +1,71 @@
+<html>
+  <head>
+    <title>Example</title>
+    <style>
+    #main { padding: 50px; }
+    #text { width: 100%; height: 200px; }
+    #send { border: 1px solid #ccc; padding: 10px 20px; margin: 10px; font-size: 1em; }
+    #output { border: 1px dashed #666; padding: 20px; font-family: 'monospace'; }
+    #output.error { color: #ee2222 }
+    </style>
+  </head>
+  <body>
+    <div id="main">
+      <div id="input">
+        <p>Please paste/type your input:</p>
+        <textarea name="text" id="text">2
+4 5
+UPDATE 2 2 2 4
+QUERY 1 1 1 3 3 3
+UPDATE 1 1 1 23
+QUERY 2 2 2 4 4 4
+QUERY 1 1 1 3 3 3
+2 4
+UPDATE 2 2 2 1
+QUERY 1 1 1 1 1 1
+QUERY 1 1 1 2 2 2
+QUERY 2 2 2 2 2 2</textarea><br>
+        <button type="button" onclick="send()" id="send">Send</button>
+      </div>
+      <p>Result</p>
+      <blockquote id="output"></blockquote>
+    </div>
+    <script>
+    if (!window.fetch) {
+      alert('Your browser doesnt support the fetch API, please use a better browser');
+    }
+    function send() {
+      var text = document.getElementById('text').value;
+      if (!text) {
+        return alert('Please type something!');
+      }
+      text = text.trim();
+      var out = document.getElementById('output');
+      out.className = '';
+      out.innerHTML = '';
+
+      fetch('/', {  
+        method: 'POST', 
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ input: text })
+      })
+      .then(function (response) {
+        if (response.status != 200) throw response; 
+        return response.json();
+      })
+      .then(function (json) {
+        var output = json.result.replace(/\n/g, '<br>');
+        out.innerHTML = output;
+      })
+      .catch(function (response) {
+        if (response.json) {
+          response.json().then(function (json) {
+            out.className = 'error';
+            out.innerHTML = json.message;
+          });
+        }
+      })
+    }
+    </script>
+  </body>
+</html>

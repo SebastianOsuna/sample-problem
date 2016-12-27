@@ -4,11 +4,16 @@
   "description": "Rappi backend tech test",
   "main": "index.js",
   "scripts": {
-    "test": "node node_modules/.bin/jasmine"
+    "test": "node node_modules/.bin/jasmine",
+    "start": "node ."
   },
   "author": "Juan Sebastian Osuna <jsebastianosuna@hotmail.com>",
   "license": "MIT",
   "devDependencies": {
     "jasmine": "^2.5.2"
+  },
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0"
   }
 }

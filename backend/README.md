@@ -4,11 +4,16 @@ Developed using `node 6.0.0`.
 
 1. Install dependencies: `npm install`
 2. Run tests: `npm test`
-3. Sample input and usage in `index.js`
+3. Start web server: `npm start`
+4. Navigate to: `http://localhost:3000`
 
 ## Description
 
 No persistence needed. To display results use the `TestCase#handler` function (defaults to `stdout`/`console.log`).
+
+To start the web server use `npm start`. You might set the `PORT` envvar for the server to bind to that port (defaults to `3000`).
+Then navigate to `http://localhost:PORT/index.html`. The web client uses the [Fetch API](https://developer.mozilla.org/en/docs/Web/API/Fetch_API), 
+so please use a modern browser.
 
 #### Parser 
 `function (inputText)`: `Object`
