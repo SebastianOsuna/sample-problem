@@ -4,6 +4,11 @@ Made using React, Reflux and SASS.
 2. Start local web server and webpack: `npm run serve`
 3. Navigate to `http://localhost:8080/`
 
+## Host configuration
+
+Check the `Gruntfile`, in the `webpack:build` configuration you can change the host and configure it as you want.
+It will only be used on `production` mode. To see how it is used see `src/js/actions.js`.
+
 ## Grunt Tasks
 
 **grunt webpack:build-dev** 

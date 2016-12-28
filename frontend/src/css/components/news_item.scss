@@ -1,64 +1,182 @@
+$item-padding: 15px;
+$item-padding-sm: 8px;
+
 .newsItem {
   display: block;
   padding: 0;
   margin: 10px 0; 
   min-height: 40px;
   width: 0;
+  overflow: hidden;
   
   &.anim {
     width: 100%;
-    @include animation(bounce-right ease-out .5s 1);
+    @include animation(bounce-right ease-in .7s 1);
   }
 
-  .preview, .extra .content { 
+  .preview {
+    width: 100%;
+
+    .categoryIcon {
+      height: 40px;
+      width: 40px;
+      display: inline-block;
+      vertical-align: top;
+      border: none;
+      border-radius: 50%;
+      background-color: rgb(55, 187, 56);
+    }
+
+    .categoryName {
+      height: 100%;
+      margin: 0 15px;
+      text-transform: capitalize;
+      line-height: 40px;
+    }
+  }
+
+  .preview { 
     background-color: white;
-    padding: 15px;
+    padding: $item-padding;
   }
   
   .extra {
-    $transition: max-height 1s cubic-bezier(.23,.24,.51,1.0);
-    margin: 10px 0;
+    $transition: max-height .5s linear;
+    margin: 10px 0 0;
+    padding: 0 $item-padding;
     width: 100%;
-    // height: auto;
     overflow: hidden;
     max-height: 0;
-    // display: block;
+    display: block;
     transition: $transition;
 
-    // transition: margin-top 1s linear;
+    &.notcollapsed {
+      @include animation(bounce-open .5s 1);
+    }
+    &.notcollapsed.small {
+      @include animation(bounce-open-small .5s 1);
+    }
+    &.collapsed {
+      @include animation(bounce-close .5s 1);
+    }
     
-    // .content { height: 100% }
+    .content { 
+      background-color: white;
+      margin-top: 10px;
+      position: relative;
+      transition: $transition;
 
+      &.best_seller {
+        border: 1px solid $app-red;
+      }
+
+      &:first-child { margin-top: 0 }
+
+      .itemImage {
+        display: inline-block;
+        vertical-align: top;
+        max-width: 39%;
+      }
+
+      .details {
+        display: inline-block;
+        vertical-align: top;
+        padding: 15px;
+        min-width: 59%;
+
+        .title {
+          padding: 0;
+          margin: 0;
+
+          &.unavailable {
+            text-decoration: line-through;
+            color: #666;
+
+            &::after { 
+              content: '(Sold out)';
+              font-size: .6em;
+              font-weight: bold;
+              margin-left: 1em;
+              text-decoration: none;
+            }
+          }
+
+          span {
+            font-size: .8em;
+            font-weight: bold;
+          }
+        }
+
+        .description {
+          margin: 10px 0 0;
+          font-size: .8em;
+          text-align: justify;
+        }
+      }
+    }
+
+    &.notcollapsed {
+      max-height: 50000px;
+      transition: $transition;
+    }
+
+    &.collapsed {
+      max-height: 0;
+     //  display: none;
+    }
+
+
+    .empty, .loading {
+      background-color: white;
+      text-align: center;
+      font-size: .7em;
+      color: #888;
+      margin: 0;
+      padding: 15px;
+    }
    
-   &.notcollapsed {
-     max-height: 500px;
-     transition: $transition;
-    // @include animation(bounce-open linear 5s 1);
-   }
-
-   &.collapsed {
-    //  margin: 0;
-    display: none;
-     transition: $transition;
-    // @include animation(bounce-close linear 5s 1);
-   }
   }
 }
 
 @include keyframes(bounce-right) {
-  0% { width: 0 }
+  0% { width: 20% }
   60% { width: 120% }
-  70% { width: 100% }
+  70% { width: 90% }
   80% { width: 110% }
   100% { width: 100% }
 }
 
 @include keyframes(bounce-open) {
   0% { height: 0 }
-  100% { height: 100px }
+  100% { height: 50%  }
+}
+
+@include keyframes(bounce-open-small) {
+  0% { height: 0 }
+  100% { height: 50px }
 }
 
 @include keyframes(bounce-close) {
-  0% { height: auto }
+  0% { height: 100% }
   100% { height: 0 }
+}
+
+@media all and (max-width: 540px) {
+  .newsItem {
+
+    .preview {
+      padding: $item-padding-sm;
+    }
+
+    .extra {
+      padding: 0 $item-padding-sm;
+
+      .content {
+        .itemImage, .details {
+          max-width: 100%;
+          width: 100%;
+        }
+      }
+    }
+  }
 }

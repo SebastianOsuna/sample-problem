@@ -51,7 +51,7 @@ module.exports = {
       React: 'react',
       ReactDOM: 'react-dom',
       Reflux: 'reflux',
-      // request: 'axios',
+      DATA: '../assets/news_mock',
     })
   ],
 };
